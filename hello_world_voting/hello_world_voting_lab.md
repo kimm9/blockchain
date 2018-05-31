@@ -290,7 +290,7 @@ With this exercise, we can note that every time we vote, vote count increment an
 
 All the major work is now done. A task that is left for us to do is to create an HTML file with candidate names and call the voting commands(this has been tested in nodejs console) in a js file.
 
-## Html file:
+## HTML file:
 
 - Create an HTML file on project directory: `touch index.html`
 - We will be using materialize and google fonts for some style on our simple page. Add this to the head section of your HTML file: 
@@ -305,6 +305,38 @@ All the major work is now done. A task that is left for us to do is to create an
   <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
   <script src="/index.js"></script>
+```
+
+- Now we are going to create a simple Table and add an input field for us to vote for candiates:
+```
+<div class="container">
+  <h3>Hello World Voting Application Demo</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Candidate</th>
+        <th>Votes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>David</td>
+        <td id="candidate-1"></td>
+      </tr>
+      <tr>
+        <td>Matt</td>
+        <td id="candidate-2"></td>
+      </tr>
+      <tr>
+        <td>Jane</td>
+        <td id="candidate-3"></td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <input id="candidate" type="text" >
+  <a class="btn" href="#" onclick="voteForCandidate()">Vote</a>
 ```
 
 ## JS file: 
