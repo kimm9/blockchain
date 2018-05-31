@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Voting Dapp</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+</head>
+<body>
+<div class="container">
+  <h3>Hello World Voting Application Demo</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Candidate</th>
+        <th>Votes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>David</td>
+        <td id="candidate-1"></td>
+      </tr>
+      <tr>
+        <td>Matt</td>
+        <td id="candidate-2"></td>
+      </tr>
+      <tr>
+        <td>Jane</td>
+        <td id="candidate-3"></td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <input id="candidate" type="text" >
+  <a class="btn" href="#" onclick="voteForCandidate()">Vote</a>
+</div>
+</body>
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="./index.js"></script>
+</html>
