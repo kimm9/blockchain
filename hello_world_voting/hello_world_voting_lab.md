@@ -6,17 +6,17 @@ Agenda:
 
 1. Setting up development enviornment
 
-2. Learn how to write, compile, and deploy a contract in your development enviornment
+2. Learn how to write, compile, and deploy a contract in your development environment
 
-3. Use Node.js console to interact with the contract on blockchain
+3. Use Node.js console to interact with the contract on the blockchain
 
 4. Create a simple web page to interact with that contract and display the vote counts and vote for candidates through the page
 
 ---
 
-# Setting up Development enviornment
+# Setting up Development environment
 
-For this lesson, we will be using a in-memory blockchain called ganache (a blockchain simulator). On the second lesson, we will interact with the real blockchain.
+For this lesson, we will be using an in-memory blockchain called ganache (a blockchain simulator). On the second lesson, we will interact with the real blockchain.
 
 ### On your terminal
 - Install npm:  `npm install npm@4.0.5`
@@ -73,13 +73,13 @@ With ganache-cli, you have 10 test accounts to play with and they are loaded wit
 
 # Simple Voting contract
 
-Now for this step, we are going to use Solidity (programming language) to write our contract. If you have a experience with object oriented programming, learning Solidity contracts should not be as intense as it seems. First we are going to write a contract called Voting, which is a like a class from a Object Oriented Programming languag. This contracts includes a contructor that initialized an array of candidates. Next, we will write 2 methods. One that will return total votes a candidate has recieved and another method to increment vote count for a candidate. 
+Now for this step, we are going to use Solidity (programming language) to write our contract. If you have a experience with object-oriented programming, learning Solidity contracts should not be as intense as it seems. First, we are going to write a contract called Voting, which is a like a class from an Object Oriented Programming language. This contract includes a constructor that initialized an array of candidates. Next, we will write 2 methods. One that will return total votes a candidate has received and another method to increment vote count for a candidate. 
 
-Things To Consider: A contructor is called only once when a contract is deployed to the blockchain. If web world overwrites an old code to a new code when it is deployed, old code in blockchain is immutable. When a contract is deployed again in blockchain, old contract will still be in blockchain along with all the data stored in it.
+Things To Consider: A constructor is called only once when a contract is deployed to the blockchain. If web world overwrites an old code to a new code when it is deployed, old code in blockchain is immutable. When a contract is deployed again in the blockchain, old contract will still be in blockchain along with all the data stored in it.
 
 ### Creating a Contract
 - Create a file: `Voting.sol`
-- Within the file, we will specify which version of compiler the code will compile with. Add this on the top this file.
+- Within the file, we will specify which version of compiler the code will compile with. Add this to the top of this file.
 
 ```
 pragma solidity ^0.4.18;
@@ -94,7 +94,7 @@ contract Voting{
 }
 ```
 
-- Since solidity does not let you pass in an array of strings in the contructor, we will use an array of bytes32 to store the list of candidates
+- Since solidity does not let you pass in an array of strings in the constructor, we will use an array of bytes32 to store the list of candidates
 
 ```
 contract Voting{
@@ -106,7 +106,7 @@ contract Voting{
 }
 ```
 
-- Now, we will create a contructor that will be called when you deploy this contract to the blockchain. When a contract is deployed, we will pass an array of candidates who will contesting in the election. 
+- Now, we will create a constructor that will be called when you deploy this contract to the blockchain. When a contract is deployed, we will pass an array of candidates who will be contesting in the election. 
 
 ```
 contract Voting{
@@ -122,7 +122,7 @@ contract Voting{
 }
 ```
 
-- We are also going to add a function that will return total amount of votes a candidate recieved and another function that will increment the vote count for the specified candidate. This is to cast a vote. 
+- We are also going to add a function that will return the total amount of votes a candidate received and another function that will increment the vote count for the specified candidate. This is to cast a vote. 
 
 ```
 contract Voting{
@@ -148,7 +148,7 @@ contract Voting{
 }
 ```
 
-- Lastly we will add a function that will checks if the candidates are valid and are in the list of candidates 
+- Lastly, we will add a function that will checks if the candidates are valid and are on the list of candidates 
 
 ```
 contract Voting{
@@ -185,7 +185,7 @@ contract Voting{
 
 ### Compile and Deploy the contract to ganache blockchain
 
-- We will instapp npm module solc to complile our solidity code: `npm install solc`
+- We will install npm module solc to compile our solidity code: `npm install solc`
 
   We are going to use web3js library to interact with the blockchain through rpc
 
@@ -226,9 +226,9 @@ contract Voting{
 
 Upon successfully compiling the contract, print compiledCode and note 2 very important fields here. 
 
-* compiledCode.contracts[':Voting'].bytecode: When Voting.sol is compiled, you will get this bytecode. This is the code that will be deployed to blockchain
+* compiledCode.contracts[':Voting'].bytecode: When Voting.sol is compiled, you will get this bytecode. This is the code that will be deployed to the blockchain
 
-* compiledCode.contracts[':Voting'].interface: This interface of the contract (abi) shows that the contracy user what kind of methods are available in the contract. In the future you will use this when you would have to interact with the contract. 
+* compiledCode.contracts[':Voting'].interface: This interface of the contract (abi) shows that the contract user what kind of methods are available in the contract. In the future, you will use this when you would have to interact with the contract. 
 
 - We will now deploy the contract by creating a contract object. This object will be used to deploy and initiate contracts in the blockchain: 
 
@@ -245,11 +245,11 @@ It is important to note that VotingContract above deployes the contract to the b
 
 * data: Compiled bytecode that is deployed to the blockchain
 
-* from: Blockchain needs to keep track of who deployed the contract and, in this case, the first account we get from calling web3.eth.accounts will be the owner for this contract. Note that web3.eth.accounts returns 10 test accounts ganache created when we used test blockchain. In live blockchain, you won't be able to just use any account. It requires you to own an actual account and unlock it before transacting. To prove your ownership in of an account, you will be asked for a passphrase. Luckily, ganache by default provides 10 unlocked accounts for convenience. 
+* from: Blockchain needs to keep track of who deployed the contract and, in this case, the first account we get from calling web3.eth.accounts will be the owner of this contract. Note that web3.eth.accounts return 10 test accounts ganache created when we used test blockchain. In live blockchain, you won't be able to just use any account. It requires you to own an actual account and unlock it before transacting. To prove your ownership in of an account, you will be asked for a passphrase. Luckily, ganache by default provides 10 unlocked accounts for convenience. 
 
-* gas: To actually interact with blockchain, you will need money. This money goes to miners who do all the work to include your code in the blockchain. To include your code in blockchain, you will have to specify how much money you are willing to put down and you would do this by setting the value of 'gas'. The ether balance in your 'from' accounts is used to buy gas and it's price is set by the network. 
+* gas: To actually interact with blockchain, you will need money. This money goes to miners who do all the work to include your code in the blockchain. To include your code in the blockchain, you will have to specify how much money you are willing to put down and you would do this by setting the value of 'gas'. The ether balance in your 'from' accounts is used to buy gas and its price is set by the network. 
 
-Since we have now deployed the contract and have an instance of the contract that allows us to interact with the contract, it is crucial to know how to indentify your contract. For this example you can get your contract address with `deployedContract.address`. In the future, you will need to interact with your contract and you will need this deployed address and abi defintion.
+Since we have now deployed the contract and have an instance of the contract that allows us to interact with the contract, it is crucial to know how to identify your contract. For this example, you can get your contact address with `deployedContract.address`. In the future, you will need to interact with your contract and you will need this deployed address and abi definition.
 
 ---
 
@@ -282,24 +282,24 @@ contractInstance.totalVotesFor.call('Matt')
 '4'
 ```
 
-With this exercise, we can note that every time we vote, vote count increment and gives us back a transaction id: `'0x9c4d185acb811214bdb93c67f8814ac9f1ecd752c2a175b4e69ea6bc7ac76291'`. This id is proof that vote or the transaction has occured. We can refer it back to this at any time in the future. It is very important to remember that this transaction is now immutable. Not being able to modify this transaction is one of the biggest advantages of blockchains. 
+With this exercise, we can note that every time we vote, vote count increment and gives us back a transaction id: `'0x9c4d185acb811214bdb93c67f8814ac9f1ecd752c2a175b4e69ea6bc7ac76291'`. This id is proof that vote or the transaction has occurred. We can refer it back to this at any time in the future. It is very important to remember that this transaction is now immutable. Not being able to modify this transaction is one of the biggest advantages of blockchains. 
 
 ---
 
 # Create a simple Webpage to connect it to Blockchain and Vote
 
-All the major work is now done. What is left for us to do is to create a html file with candidate names and call the voting commands(this has been tested in nodejs console) in a js file.
+All the major work is now done. A task that is left for us to do is to create an HTML file with candidate names and call the voting commands(this has been tested in nodejs console) in a js file.
 
 ## Html file:
 
 - Create an HTML file on project directory: `touch index.html`
-- We will be using materialize and google fonts for some style on our simple page. Add this to the head section of your html file: 
+- We will be using materialize and google fonts for some style on our simple page. Add this to the head section of your HTML file: 
 ```
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 ```
 
-- We will also need to connect web3js cdn, jquery, and our js file to this simple page. Add this right after the closing body tag:
+- We will also need to connect web3js CDN, jquery, and our js file to this simple page. Add this right after the closing body tag:
 
 ```
   <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
@@ -314,7 +314,7 @@ All the major work is now done. What is left for us to do is to create a html fi
   web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 ```
 
-- Create an variable called abi and we set it to parse data: 
+- Create a variable called abi and we set it to parse data: 
 ```
   abi = JSON.parse('[{"constant":false,"inputs":[{"name":"candidate","type":"bytes32"}],"name":"totalVotesFor","outputs":[{"name":"","type":"uint8"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"candidate","type":"bytes32"}],"name":"validCandidate","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"votesReceived","outputs":[{"name":"","type":"uint8"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"x","type":"bytes32"}],"name":"bytes32ToString","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"candidateList","outputs":[{"name":"","type":"bytes32"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"candidate","type":"bytes32"}],"name":"voteForCandidate","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"contractOwner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"inputs":[{"name":"candidateNames","type":"bytes32[]"}],"payable":false,"type":"constructor"}]')
 ```
@@ -324,7 +324,7 @@ All the major work is now done. What is left for us to do is to create a html fi
 VotingContract = web3.eth.contract(abi);
 ```
 
-- For this step we would need to go to our nodejs console and excute contractInstance.addresss like before to get the address at which the contract was deployed. Change the address line below with your own address:
+- For this step, we would need to go to our nodejs console and execute contractInstance.address like before to get the address at which the contract was deployed. Change the address line below with your own address:
 
 ```
   contractInstance = VotingContract.at('0x921535bec44c28f06a2639b06761b621b4b6fe18');
@@ -335,7 +335,7 @@ VotingContract = web3.eth.contract(abi);
 candidates = {"David": "candidate_1", "Matt": "candidate_2", "Jane": "candidate_3"}
 ```
 
-- Since we set all the variables needed, we will creating a functions that allows us to vote for candidates: 
+- Since we set all the variables needed, we will be creating a function that allows us to vote for candidates: 
 
 ```
   function voteForCandidate() {
@@ -358,4 +358,4 @@ $(document).ready(function() {
   }
 });
 
-```
+```Create a simple web page to interact with that contract and display the vote counts and vote for candidates through the page
